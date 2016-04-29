@@ -13,12 +13,11 @@ class Player(object):
         })
 
     def on_post(self, req, resp):
-        res = self.play_sound(self.path)
+        self.play_sound(self.path)
         resp.body = json.dumps(res)
 
     def play_sound(self, path):
-        subprocess.Popen(['mplayer', path])
-        return 'Not implemented'
+        return subprocess.Popen(['mplayer', path]).pid
 
 
 class Applause(Player):
@@ -27,6 +26,10 @@ class Applause(Player):
 
 class Drumroll(Player):
     path = './sound_files/drumroll.wav'
+
+
+class Hercules(Player):
+    path = './sound_files/hercules.mp3'
 
 
 class HowYouDoin(Player):
@@ -56,6 +59,7 @@ class ThatWasEasy(Player):
 api = falcon.API()
 api.add_route('/applause', Applause())
 api.add_route('/drumroll', Drumroll())
+api.add_route('/hercules', Hercules())
 api.add_route('/howyoudoin', HowYouDoin())
 api.add_route('/jerry', Jerry())
 api.add_route('/kramer', Kramer())
