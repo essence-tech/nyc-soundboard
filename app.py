@@ -14,10 +14,11 @@ class Player(object):
 
     def on_post(self, req, resp):
         self.play_sound(self.path)
-        resp.body = json.dumps(res)
+        resp.body = json.dumps('!')
+        return
 
     def play_sound(self, path):
-        return subprocess.Popen(['mplayer', path]).pid
+        subprocess.Popen(['mplayer', path])
 
 
 class Applause(Player):
