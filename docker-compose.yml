@@ -1,0 +1,15 @@
+board:
+    image: python:3.5
+    command: cd /sb && pip install -r requirements.txt
+    volumes:
+        - .:/sb
+nginx:
+    image: nginx:latest
+    ports:
+        - "8000:8000"
+    volumes:
+        - ./ngix.conf:/etc/nginx/nginx.conf
+    volumes_from:
+        - board
+    links:
+        - board
