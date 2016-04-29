@@ -29,6 +29,10 @@ class Drumroll(Player):
     path = './sound_files/drumroll.wav'
 
 
+class HowYouDoin(Player):
+    path = './sound_files/howyoudoin.mp3'
+
+
 class Jerry(Player):
     path = './sound_files/Jerry-hello.mp3'
 
@@ -41,12 +45,23 @@ class PhatBeat(Player):
     path = './sound_files/phat_beat.wav'
 
 
+class SadTrombone(Player):
+    path = './sound_files/sad_trombone.wav'
+
+
+class ThatWasEasy(Player):
+    path = './sound_files/that_was_easy.wav'
+
+
 api = falcon.API()
 api.add_route('/applause', Applause())
 api.add_route('/drumroll', Drumroll())
+api.add_route('/howyoudoin', HowYouDoin())
 api.add_route('/jerry', Jerry())
 api.add_route('/kramer', Kramer())
 api.add_route('/phatbeat', PhatBeat())
+api.add_route('/sadtrombone', SadTrombone())
+api.add_route('/thatwaseasy', ThatWasEasy())
 
 if __name__ == '__main__':
     httpd = simple_server.make_server('0.0.0.0', 8000, api)
