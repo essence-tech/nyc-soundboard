@@ -7,17 +7,23 @@ from wsgiref import simple_server
 
 class Player(object):
 
-    def play_sound(self, path):
-        subprocess.run(["mpg123", path])
-        return 'Not implemented'
-
-
-class Drumroll(Player):
-    self.path = './sound_files/drumroll.wav'
+    def on_get(self, req, resp):
+        resp.body = json.dumps({
+            'file': self.path
+        })
 
     def on_post(self, req, resp):
         res = self.play_sound(self.path)
         resp.body = json.dumps(res)
+
+    def play_sound(self, path):
+        subprocess.run(["mplayer", path])
+        return 'Not implemented'
+
+
+class Drumroll(Player):
+    path = './sound_files/drumroll.wav'
+
 
 api = falcon.API()
 api.add_route('/drumroll', Drumroll())
