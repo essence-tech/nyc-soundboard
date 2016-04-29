@@ -17,7 +17,7 @@ class Player(object):
         resp.body = json.dumps(res)
 
     def play_sound(self, path):
-        subprocess.run(["mplayer", path])
+        subprocess.Popen(['mplayer', path])
         return 'Not implemented'
 
 
