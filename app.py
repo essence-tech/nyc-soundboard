@@ -21,12 +21,32 @@ class Player(object):
         return 'Not implemented'
 
 
+class Applause(Player):
+    path = './sound_files/applause.wav'
+
+
 class Drumroll(Player):
     path = './sound_files/drumroll.wav'
 
 
+class Jerry(Player):
+    path = './sound_files/Jerry-hello.mp3'
+
+
+class Kramer(Player):
+    path = './sound_files/Kramer-crazy.mp3'
+
+
+class PhatBeat(Player):
+    path = './sound_files/phat_beat.wav'
+
+
 api = falcon.API()
+api.add_route('/applause', Applause())
 api.add_route('/drumroll', Drumroll())
+api.add_route('/jerry', Jerry())
+api.add_route('/kramer', Kramer())
+api.add_route('/phatbeat', PhatBeat())
 
 if __name__ == '__main__':
     httpd = simple_server.make_server('0.0.0.0', 8000, api)
